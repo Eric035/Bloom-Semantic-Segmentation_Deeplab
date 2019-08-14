@@ -47,9 +47,9 @@ def drawBorder(img_name, img_path):
     mask = laplacian_8u
     print('------------------------------------------------------------------------------------------------')
 
-    dilation[(dilation == 222)] = 128
-    dilation[dilation == 21] = 0
-    dilation[(mask == 255)] = 255
+    dilation[dilation == 21] = 0        # 0: Background
+    dilation[(dilation == 222)] = 128   # 128: Plant
+    dilation[(mask == 255)] = 255       # 255: Border
     res = dilation
     
     print('Saving image...')
@@ -63,7 +63,6 @@ def main():
     list(map(lambda img : drawBorder(img, bloom_dir_path_in + img), seg_img_list))    # Apply the drawBorder function to each element in our input img list
 
 main()
-
 
 
 # expanded = img_seg
